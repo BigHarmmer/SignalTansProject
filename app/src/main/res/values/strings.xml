@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">SignalTransmissionProject</string>
+    <string name="config_ip">服务器IP:</string>
+    <string name="config_port">端口号:</string>
+    <string name="config_identify">授权号:</string>
+    <string name="config_connect_switch">打开连接</string>
+    <string name="config_status">连接状态:</string>
+    <string name="config_status_fail">连接断开</string>
+    <string name="config_status_success">连接成功</string>
+
+    <string name="help_about_identify">关于授权号</string>
+    <string name="help_contract_author">联系作者</string>
+    <string name="help_IMEI_message">IMEI信息</string>
+    <string name="help_identify_content">
+        1.授权号如何获取？\n
+        请联系作者获取授权号\n
+        2.一个授权号是否可以同时是多个手机使用？\n
+        不可以。\n
+        3.授权号如何收费？\n
+        可以按月付费也可以按年付费，具体联系作者
+    </string>
+    <string name="help_author_tel">手机号:</string>
+    <string name="help_author_tel_content">XXXXXXXXXXX</string>
+    <string name="help_author_chat">微信号:</string>
+    <string name="help_author_chat_content">XXXXXXXXXXX</string>
+    <string name="help_message_MEID">MEID:</string>
+    <string name="help_message_IMEI">IMEI:</string>
+
+
+    <string name="dialog_disconnect_title">断开连接</string>
+    <string name="dialog_disconnect_content">确认断开连接？断开连接后无法接收服务器消息</string>
+    <string name="dialog_disconnect_positive">确定</string>
+    <string name="dialog_disconnect_negative">取消</string>
+    
+</resources>
