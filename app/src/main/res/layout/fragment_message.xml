@@ -1,7 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
+    <include
+        android:id="@+id/BPK_layout"
+        layout="@layout/item_message_detail"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/main_gray"
+        />
+
+    <include
+        android:id="@+id/SPK_layout"
+        layout="@layout/item_message_detail"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/main_gray"
+        />
+
+    <include
+        android:id="@+id/BOLL_layout"
+        layout="@layout/item_message_detail"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/main_gray"
+        />
+
+    <include
+        android:id="@+id/DT_layout"
+        layout="@layout/item_message_detail"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/main_gray"
+        />
+
+    <ExpandableListView
+        android:id="@+id/message_elv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </ExpandableListView>
 </LinearLayout>

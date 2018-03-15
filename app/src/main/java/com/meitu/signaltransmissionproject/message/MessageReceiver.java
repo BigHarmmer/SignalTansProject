@@ -48,6 +48,7 @@ public class MessageReceiver extends BroadcastReceiver {
     public static void sendMessage(String[] message) {
         Intent intent = new Intent();
         intent.putExtra(EXTRA_MESSAGE, message);
+        intent.setAction(MESSAGE_ACTION);
         MyApplication.getInstance().sendBroadcast(intent);
     }
 }
