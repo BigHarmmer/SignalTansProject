@@ -22,32 +22,18 @@ public class MessagePresenter extends AbsPresenter<IMessageView> implements Mess
 
     @Override
     public void onReceiveMessage(String[] message) {
-        mStorage.update(message);
-        //通知更新
-        mMvpView.onListUpdate();
+        if (mStorage.update(message)) {
+            //通知更新
+            mMvpView.onListUpdate();
+        }
     }
 
     public void destroy() {
         mStorage.save();
     }
 
-    public List<String[]> getBPKs() {
-        return mStorage.getTotalList().get(0);
-    }
-
-    public List<String[]> getSPKs() {
-        return mStorage.getTotalList().get(1);
-    }
-
-    public List<String[]> getBOLLs() {
-        return mStorage.getTotalList().get(2);
-    }
-
-    public List<String[]> getDTs() {
-        return mStorage.getTotalList().get(3);
-    }
-
     public List<List<String[]>> getTotalList() {
+
         return mStorage.getTotalList();
     }
 }

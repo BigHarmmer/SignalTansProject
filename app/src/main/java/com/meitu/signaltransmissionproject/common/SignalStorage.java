@@ -5,8 +5,6 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,18 +44,24 @@ public class SignalStorage {
      * @return 将内容分割成time 和 content的列表
      */
     public List<List<String[]>> getTotalList() {
-        List<List<String[]>> newParentList = new ArrayList<>(4);
+        List<List<String[]>> parentList = new ArrayList<>(5);
+        List<String[]> firstChildList = new ArrayList<>(4);
         for (List<String> list : mTotalList) {
             List<String[]> newChildList = new ArrayList<>();
-            for (String str : list) {
+            for (int i = 0; i < list.size(); i++) {
+                String str = list.get(i);
                 String strs[] = subSignalString(str);
                 if (strs != null) {
                     newChildList.add(strs);
+                    if (i == 0) {
+                        firstChildList.add(strs);
+                    }
                 }
             }
-            newParentList.add(newChildList);
+            parentList.add(newChildList);
         }
-        return newParentList;
+        parentList.add(0, firstChildList);
+        return parentList;
     }
 
 
@@ -68,16 +72,17 @@ public class SignalStorage {
         SharedPreManager.setDT(listToString(mTotalList.get(3)));
     }
 
-    public void update(String[] update) {
-        addInList(update[0], mTotalList.get(0));
-        addInList(update[1], mTotalList.get(1));
-        addInList(update[2], mTotalList.get(2));
-        addInList(update[3], mTotalList.get(3));
+    public boolean update(String[] update) {
+        boolean check1 = addInList(update[0], mTotalList.get(0));
+        boolean check2 = addInList(update[1], mTotalList.get(1));
+        boolean check3 = addInList(update[2], mTotalList.get(2));
+        boolean check4 = addInList(update[3], mTotalList.get(3));
+        return check1 || check2 || check3 || check4;
     }
 
-    private void addInList(String update, List<String> list) {
+    private boolean addInList(String update, List<String> list) {
         if (!list.isEmpty() && list.get(0).equals(update)) {
-            return;
+            return false;
         }
         if (list.size() < 20) {
             list.add(0, update);
@@ -85,6 +90,7 @@ public class SignalStorage {
             list.remove(19);
             list.add(0, update);
         }
+        return true;
     }
 
     /**

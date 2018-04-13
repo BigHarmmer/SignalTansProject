@@ -20,19 +20,11 @@ public class MessageFragment extends BaseFragment implements IMessageView {
     private MessagePresenter mPresenter;
     private MessageReceiver mMessageReceiver;
 
-    private TextView mBpkTimeTv;
-    private TextView mSpkTimeTv;
-    private TextView mBollTimeTv;
-    private TextView mDtTimeTv;
-
-    private TextView mBpkDetailTv;
-    private TextView mSpkDetailTv;
-    private TextView mBollDetailTv;
-    private TextView mDtDetailTv;
 
     private ExpandableListView mExpandableListView;
+    private SignalExpandableAdapter mSignalExpandableAdapter;
 
-    String[] parentTitle = new String[]{"BPK列表", "SPK列表", "BOLL列表", "DT列表"};
+    String[] parentTitle = new String[]{"最新消息","BPK列表", "SPK列表", "BOLL列表", "DT列表"};
 
     public MessageFragment() {
         mPresenter = new MessagePresenter(this);
@@ -59,20 +51,8 @@ public class MessageFragment extends BaseFragment implements IMessageView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayout bpk = view.findViewById(R.id.BPK_layout);
-        mBpkTimeTv = bpk.findViewById(R.id.item_time_tv);
-        mBpkDetailTv = bpk.findViewById(R.id.item_detail_tv);
-        LinearLayout spk = view.findViewById(R.id.SPK_layout);
-        mSpkTimeTv = spk.findViewById(R.id.item_time_tv);
-        mSpkDetailTv = spk.findViewById(R.id.item_detail_tv);
-        LinearLayout boll = view.findViewById(R.id.BOLL_layout);
-        mBollTimeTv = boll.findViewById(R.id.item_time_tv);
-        mBollDetailTv = boll.findViewById(R.id.item_detail_tv);
-        LinearLayout dt = view.findViewById(R.id.DT_layout);
-        mDtTimeTv = dt.findViewById(R.id.item_time_tv);
-        mDtDetailTv = dt.findViewById(R.id.item_detail_tv);
         mExpandableListView = view.findViewById(R.id.message_elv);
-        mExpandableListView.setAdapter(new SignalExpandableAdapter(parentTitle, getActivity(), mPresenter.getTotalList()));
+
         updateUi();
     }
 
@@ -92,14 +72,9 @@ public class MessageFragment extends BaseFragment implements IMessageView {
     }
 
     public void updateUi() {
-        mBpkTimeTv.setText(mPresenter.getBPKs().get(0)[0]);
-        mBpkDetailTv.setText(mPresenter.getBPKs().get(0)[1]);
-        mSpkTimeTv.setText(mPresenter.getSPKs().get(0)[0]);
-        mSpkDetailTv.setText(mPresenter.getSPKs().get(0)[1]);
-        mBollTimeTv.setText(mPresenter.getBOLLs().get(0)[0]);
-        mBollDetailTv.setText(mPresenter.getBOLLs().get(0)[1]);
-        mDtTimeTv.setText(mPresenter.getDTs().get(0)[0]);
-        mDtDetailTv.setText(mPresenter.getDTs().get(0)[1]);
+        mSignalExpandableAdapter = new SignalExpandableAdapter(parentTitle, getActivity(), mPresenter.getTotalList());
+        mExpandableListView.setAdapter(mSignalExpandableAdapter);
+// }
     }
 
 
